@@ -52,5 +52,36 @@ namespace pet_hotel.Controllers
         }
 
 
+           [HttpDelete("{id}")]
+            public IActionResult Delete(int id)
+        {
+            PetOwner petOwner = _context.PetOwners.SingleOrDefault(p => p.id == id); // I believe this checks if the pet exists or not
+
+            if(petOwner is null){
+                return NotFound();      // If the pet doesn't exist, it returns 404 Not Found error
+            }
+            
+            _context.PetOwners.Remove(petOwner);  // This deletes the pet
+            _context.SaveChanges();     // This commits the change
+
+            // 204
+            return NoContent();         // This returns a confirmation of deletion
+        }
+
+            [HttpPut("{id}")]
+            public IActionResult Put(int id, PetOwner petOwner)
+        {
+            Console.WriteLine("in PUT petOwner");
+            if (id != petOwner.id)
+            {
+                return BadRequest();
+            }
+            // update in DB
+            _context.Update(petOwner);       // Updates pet
+            _context.SaveChanges();     // Saves pet
+            return NoContent();
+        }
+
+
     }
 }
