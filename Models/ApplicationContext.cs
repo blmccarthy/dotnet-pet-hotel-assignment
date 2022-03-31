@@ -25,6 +25,6 @@ namespace pet_hotel.Models
         // public DbSet<MyClass> MyClassTable { get; set; }
 
         public DbSet<PetOwner> PetOwners {get;set;}
-        // public DbSet<Pet> Pets {get;set;}    <----------- Can be uncommented once 'Pet' model is created
+        public DbSet<Pet> Pets {get;set;}
     }
 }
