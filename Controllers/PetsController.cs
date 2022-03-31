@@ -29,10 +29,10 @@ namespace pet_hotel.Controllers
 
         // --- Get Pet by ID ---------------------------------------------------
         [HttpGet("{id}")]
-        public ActionResult<PetOwner> GetById(int id) 
+        public ActionResult<Pet> GetById(int id) 
         {
             Console.WriteLine("get one pet");
-            PetOwner pet = _context.Pets
+            Pet pet = _context.Pets
                 .SingleOrDefault(pet => pet.id == id); 
 
             if(pet is null) {
@@ -46,7 +46,7 @@ namespace pet_hotel.Controllers
         [HttpPost]
         public IActionResult Post(Pet pet)
         {
-            _context.Add(pet); // This posts the pet to the database
+            _context.Add(pet);      // This posts the pet to the database
             _context.SaveChanges(); // This commits the change
             
             return CreatedAtAction(nameof(Post), new { id = pet.id }, pet); // This returns the added pet's information
@@ -59,14 +59,14 @@ namespace pet_hotel.Controllers
             Pet pet = _context.Pets.SingleOrDefault(p => p.id == id); // I believe this checks if the pet exists or not
 
             if(pet is null){
-                return NotFound(); // If the pet doesn't exist, it returns 404 Not Found error
+                return NotFound();      // If the pet doesn't exist, it returns 404 Not Found error
             }
             
-            _context.Pets.Remove(pet); // This deletes the pet
-            _context.SaveChanges(); // This commits the change
+            _context.Pets.Remove(pet);  // This deletes the pet
+            _context.SaveChanges();     // This commits the change
 
             // 204
-            return NoContent(); // This returns a confirmation of deletion
+            return NoContent();         // This returns a confirmation of deletion
         }
         
         // --- Update Pet ------------------------------------------------------
@@ -79,8 +79,8 @@ namespace pet_hotel.Controllers
                 return BadRequest();
             }
             // update in DB
-            _context.Update(pet);
-            _context.SaveChanges();
+            _context.Update(pet);       // Updates pet
+            _context.SaveChanges();     // Saves pet
             return NoContent();
         }
 

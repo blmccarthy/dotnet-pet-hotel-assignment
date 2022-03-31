@@ -57,7 +57,7 @@ namespace pet_hotel
 
         public DateTime checkedOut {get;set;}
 
-        [ForeignKey("bakedBy")]
+        [ForeignKey("petOwner")]
         public int petOwnerId {get;set;}
 
         public PetOwner petOwner {get;set;}
