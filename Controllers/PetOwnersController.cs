@@ -22,7 +22,7 @@ namespace pet_hotel.Controllers
         [HttpGet]
         public IEnumerable<PetOwner> GetPetOwners()
         { //GetPetOwners is taco
-            Console.WriteLine("get all bakers");
+            Console.WriteLine("get all pet owners");
             // no SQL
             return _context.PetOwners;
         }

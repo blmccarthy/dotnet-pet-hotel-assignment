@@ -24,7 +24,8 @@ namespace pet_hotel.Controllers
         public IEnumerable<Pet> GetPets() 
         {
             Console.WriteLine("Get All Pets!");
-            return _context.Pets;
+            return _context.Pets
+            .Include(PetOwner => PetOwner.petOwner);
         }
 
         // --- Get Pet by ID ---------------------------------------------------
@@ -32,7 +33,7 @@ namespace pet_hotel.Controllers
         public ActionResult<Pet> GetById(int id) 
         {
             Console.WriteLine("get one pet");
-            Pet pet = _context.Pets
+            Pet pet = _context.Pets.Include(PetOwner => PetOwner.petOwner)
                 .SingleOrDefault(pet => pet.id == id); 
 
             if(pet is null) {
